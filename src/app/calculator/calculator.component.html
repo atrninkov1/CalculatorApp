@@ -1,32 +1,32 @@
 <div class="Content">
 <div for="display" class="display">{{displayValue}}</div>
 <button class="CalculatorButton">%</button>
-<button class="CalculatorButton">C</button>
+<button class="CalculatorButton" (click)="Clear()">C</button>
 <button class="CalculatorButton">CE</button>
 <button class="CalculatorButton">◄</button>
-<button class="CalculatorButton">÷</button>
+<button class="CalculatorButton" (click)='Operation("÷")'>÷</button>
 <br>
 <button class="CalculatorButton">√</button>
 <button class="CalculatorButton" (click)="PressNum(7)">7</button>
 <button class="CalculatorButton" (click)="PressNum(8)">8</button>
 <button class="CalculatorButton" (click)="PressNum(9)">9</button>
-<button class="CalculatorButton">X</button>
+<button class="CalculatorButton" (click)='Operation("X")'>X</button>
 <br>
 <button class="CalculatorButton">x²</button>
 <button class="CalculatorButton" (click)="PressNum(4)">4</button>
 <button class="CalculatorButton" (click)="PressNum(5)">5</button>
 <button class="CalculatorButton" (click)="PressNum(6)">6</button>
-<button class="CalculatorButton">-</button>
+<button class="CalculatorButton" (click)='Operation("-")'>-</button>
 <br>
 <button class="CalculatorButton">x³</button>
 <button class="CalculatorButton" (click)="PressNum(1)">1</button>
 <button class="CalculatorButton" (click)="PressNum(2)">2</button>
 <button class="CalculatorButton" (click)="PressNum(3)">3</button>
-<button class="CalculatorButton">+</button>
+<button class="CalculatorButton" (click)='Operation("+")'>+</button>
 <br>
 <button class="CalculatorButton">1/x</button>
 <button class="CalculatorButton">±</button>
-<button class="CalculatorButton">0</button>
+<button class="CalculatorButton" (click)="PressNum(0)">0</button>
 <button class="CalculatorButton">.</button>
 <button class="CalculatorButton">=</button>
 </div>
