@@ -1,0 +1,18 @@
+.display{
+    border: 1px solid greenyellow;
+    width: 25%;
+    padding: 25px 0px;
+    margin: auto;
+}
+
+.CalculatorButton{
+    border: 1px solid greenyellow;
+    padding: 25px;
+    width: 5%;
+    background-color: black;
+    color: greenyellow;
+}
+
+.Content{
+    text-align: center;
+}
