@@ -11,16 +11,14 @@ nav div
 	margin-right: 50%;
 }
 
-nav div a
-{
+nav div a{
 	text-decoration:  none;
 	margin-left:8px;
 	margin-right:8px;
 }
 
-a
-{
-	text-decoration:  none;
+a{
+	text-decoration:  none !important;
 }
 
 
@@ -31,6 +29,13 @@ div img
 	margin-right: auto;
 	width: 50%;
 	height: 50%;
+}
+
+hr{
+    height: 1;
+    border-color:lightskyblue;
+    background-color: lightskyblue;
+    color: lightskyblue;
 }
 
 .Header
