@@ -10,6 +10,7 @@ export class CalculatorComponent implements OnInit {
   firstValue = 0;
   clearDisplay = false;
   firstValueInputed = false;
+  lastOperation = "";
   constructor() { }
 
   ngOnInit() {
@@ -24,11 +25,15 @@ export class CalculatorComponent implements OnInit {
   }
 
   public Clear(){
-    this.displayValue="";
+    this.displayValue = "";
+    this.firstValue = 0;
+    this.clearDisplay = false;
+    this.firstValueInputed = false;
+    this.lastOperation = "";
   }
 
   public Operation(operation){
-    switch (operation) {
+    switch (this.lastOperation) {
       case "+":
         if (this.displayValue == "") {
           this.displayValue="0";
@@ -53,25 +58,40 @@ export class CalculatorComponent implements OnInit {
           break;
       
       case "X":
-          if (this.displayValue == "") {
-            this.displayValue="0";
-          }
+        if (this.displayValue == "") {
+          this.displayValue="0";
+        }
+        if (!this.firstValueInputed) {
+          this.firstValue = +this.displayValue;
+          this.clearDisplay = true;
+        }
+        else{
           this.firstValue*= +this.displayValue;
           this.displayValue=this.firstValue.toString();
           this.clearDisplay = true;
-          break;
+        }
+      break;
       
       case "÷":
-          if (this.displayValue == "") {
-            this.displayValue="0";
-          }
+        if (this.displayValue == "") {
+          this.displayValue="0";
+        }
+        if (!this.firstValueInputed) {
+          this.firstValue = +this.displayValue;
+          this.clearDisplay = true;
+        }
+        else{
           this.firstValue/= +this.displayValue;
           this.displayValue=this.firstValue.toString();
           this.clearDisplay = true;
-          break;
-      default:
+        }
+      break;
+      default:      
+      this.firstValue=+this.displayValue;
+      this.clearDisplay = true;
         break;
     }
     this.firstValueInputed = true;
+    this.lastOperation = operation;
   }
 }
