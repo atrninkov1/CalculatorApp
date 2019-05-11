@@ -1,16 +1,16 @@
 .display{
-    border: 1px solid greenyellow;
+    border: 1px solid lightskyblue;
     width: 25%;
     padding: 25px 0px;
     margin: auto;
 }
 
 .CalculatorButton{
-    border: 1px solid greenyellow;
+    border: 1px solid lightskyblue;
     padding: 25px;
     width: 5%;
     background-color: black;
-    color: greenyellow;
+    color: lightskyblue;
 }
 
 .Content{
