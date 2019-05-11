@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculatorComponent implements OnInit {
   displayValue = "";
-  firstValue = 0;
+  firstValue = 0.0;
   clearDisplay = false;
   firstValueInputed = false;
   lastOperation = "";
@@ -26,7 +26,7 @@ export class CalculatorComponent implements OnInit {
 
   public Clear(){
     this.displayValue = "";
-    this.firstValue = 0;
+    this.firstValue = 0.0;
     this.clearDisplay = false;
     this.firstValueInputed = false;
     this.lastOperation = "";
@@ -90,6 +90,21 @@ export class CalculatorComponent implements OnInit {
           this.clearDisplay = true;
         }
       break;
+
+      case "%":
+        if (this.displayValue == "") {
+          this.displayValue="0";
+        }
+        if (!this.firstValueInputed) {
+          this.firstValue = +this.displayValue;
+          this.clearDisplay = true;
+        }
+        else{
+          this.firstValue%= +this.displayValue;
+          this.displayValue=this.firstValue.toString();
+          this.clearDisplay = true;
+        }
+      break;
       default:      
       this.firstValue=+this.displayValue;
       this.clearDisplay = true;
@@ -97,5 +112,19 @@ export class CalculatorComponent implements OnInit {
     }
     this.firstValueInputed = true;
     this.lastOperation = operation;
+  }
+
+  public ComplexOperation(operation){
+    switch (operation) {
+      case "√":
+        if (this.displayValue == "") {
+          this.displayValue="0";
+        }
+        this.displayValue = Math.sqrt(+this.displayValue).toString();
+      break;
+    
+      default:
+        break;
+    }
   }
 }
