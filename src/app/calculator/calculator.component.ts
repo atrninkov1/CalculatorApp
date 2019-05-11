@@ -32,6 +32,10 @@ export class CalculatorComponent implements OnInit {
     this.lastOperation = "";
   }
 
+  public ClearEntry(){
+    this.displayValue = "";
+  }
+
   public Operation(operation){
     switch (this.lastOperation) {
       case "+":
