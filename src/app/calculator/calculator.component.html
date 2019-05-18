@@ -1,9 +1,10 @@
 <div class="Content">
-<div for="display" class="display">{{displayValue}}</div>
+<div for="display" class="display" (keydown)="onKeydown($event)">{{previousDisplay}}<br>
+    {{displayValue}}</div>
 <button class="CalculatorButton" (click)='Operation("%")'>%</button>
 <button class="CalculatorButton" (click)="Clear()">C</button>
 <button class="CalculatorButton" (click)="ClearEntry()">CE</button>
-<button class="CalculatorButton">◄</button>
+<button class="CalculatorButton" (click)='ComplexOperation("◄")'>◄</button>
 <button class="CalculatorButton" (click)='Operation("÷")'>÷</button>
 <br>
 <button class="CalculatorButton" (click)='ComplexOperation("√")'>√</button>
@@ -12,21 +13,24 @@
 <button class="CalculatorButton" (click)="PressNum(9)">9</button>
 <button class="CalculatorButton" (click)='Operation("X")'>X</button>
 <br>
-<button class="CalculatorButton">x²</button>
+<button class="CalculatorButton" (click)='ComplexOperation("x²")'>x²</button>
 <button class="CalculatorButton" (click)="PressNum(4)">4</button>
 <button class="CalculatorButton" (click)="PressNum(5)">5</button>
 <button class="CalculatorButton" (click)="PressNum(6)">6</button>
 <button class="CalculatorButton" (click)='Operation("-")'>-</button>
 <br>
-<button class="CalculatorButton">x³</button>
+<button class="CalculatorButton" (click)='ComplexOperation("x³")'>x³</button>
 <button class="CalculatorButton" (click)="PressNum(1)">1</button>
 <button class="CalculatorButton" (click)="PressNum(2)">2</button>
 <button class="CalculatorButton" (click)="PressNum(3)">3</button>
 <button class="CalculatorButton" (click)='Operation("+")'>+</button>
 <br>
-<button class="CalculatorButton">1/x</button>
-<button class="CalculatorButton">±</button>
+<button class="CalculatorButton" (click)='ComplexOperation("1/X")'>1/x</button>
+<button class="CalculatorButton" (click)='ComplexOperation("±")'>±</button>
 <button class="CalculatorButton" (click)="PressNum(0)">0</button>
 <button class="CalculatorButton" (click)='PressNum(".")'>.</button>
 <button class="CalculatorButton" (click)='Operation("")'>=</button>
+<div style="white-space: pre-line;">
+    {{historicDisplay}}
+</div>
 </div>
