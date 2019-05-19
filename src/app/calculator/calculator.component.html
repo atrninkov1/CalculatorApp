@@ -1,4 +1,4 @@
-<div class="Content">
+<div class="Calculator">
 <div for="display" class="display" (keydown)="onKeydown($event)">{{previousDisplay}}<br>
     {{displayValue}}</div>
 <button class="CalculatorButton" (click)='Operation("%")'>%</button>
@@ -30,7 +30,8 @@
 <button class="CalculatorButton" (click)="PressNum(0)">0</button>
 <button class="CalculatorButton" (click)='PressNum(".")'>.</button>
 <button class="CalculatorButton" (click)='Operation("")'>=</button>
-<div style="white-space: pre-line;">
-    {{historicDisplay}}
 </div>
+
+<div class="History"> History:<br>
+    {{historicDisplay}}
 </div>
