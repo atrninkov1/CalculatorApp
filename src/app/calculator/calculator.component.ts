@@ -66,7 +66,7 @@ export class CalculatorComponent implements OnInit {
 
 
   displayValue = "";
-  firstValue = 0.0;
+  value = 0.0;
   clearDisplay = false;
   firstValueInputed = false;
   lastOperation = "";
@@ -87,7 +87,7 @@ export class CalculatorComponent implements OnInit {
 
   public Clear(){
     this.displayValue = "";
-    this.firstValue = 0.0;
+    this.value = 0.0;
     this.clearDisplay = false;
     this.firstValueInputed = false;
     this.lastOperation = "";
@@ -104,31 +104,28 @@ export class CalculatorComponent implements OnInit {
         if (this.displayValue == "") {
           this.displayValue="0";
         }
-        this.firstValue+= +this.displayValue;
-        break;
+        this.value = this.Add(+this.displayValue, this.value);
+      break;
       case "-":
           if (this.displayValue == "") {
             this.displayValue="0";
           }
           if (!this.firstValueInputed) {
-            this.firstValue = +this.displayValue;
-            this.clearDisplay = true;
+            this.value = +this.displayValue;
           }
           else{
-            this.firstValue-= +this.displayValue;
+            this.value= this.Subtract(this.value, +this.displayValue);
           }
-          break;
-      
+      break;      
       case "X":
         if (this.displayValue == "") {
           this.displayValue="0";
         }
         if (!this.firstValueInputed) {
-          this.firstValue = +this.displayValue;
-          this.clearDisplay = true;
+          this.value = +this.displayValue;
         }
         else{
-          this.firstValue*= +this.displayValue;
+          this.value= this.Multiply(this.value, +this.displayValue);
         }
       break;
       
@@ -137,11 +134,10 @@ export class CalculatorComponent implements OnInit {
           this.displayValue="0";
         }
         if (!this.firstValueInputed) {
-          this.firstValue = +this.displayValue;
-          this.clearDisplay = true;
+          this.value = +this.displayValue;
         }
         else{
-          this.firstValue/= +this.displayValue;
+          this.value= this.Divide(this.value, +this.displayValue);
         }
       break;
 
@@ -150,17 +146,15 @@ export class CalculatorComponent implements OnInit {
           this.displayValue="0";
         }
         if (!this.firstValueInputed) {
-          this.firstValue = +this.displayValue;
-          this.clearDisplay = true;
+          this.value = +this.displayValue;
         }
         else{
-          this.firstValue%= +this.displayValue;
+          this.value= this.Modulus(this.value, +this.displayValue);
         }
       break;
       default:      
-      this.firstValue=+this.displayValue;
-      this.clearDisplay = true;
-        break;
+        this.value=+this.displayValue;
+      break;
     }
     this.firstValueInputed = true;
     this.lastOperation = operation;
@@ -170,7 +164,7 @@ export class CalculatorComponent implements OnInit {
       this.historicDisplay += (this.previousDisplay + "\n");
       this.previousDisplay = "";
     }
-    this.displayValue=this.firstValue.toString();
+    this.displayValue=this.value.toString();
     this.clearDisplay = true;
   }
 
@@ -180,47 +174,83 @@ export class CalculatorComponent implements OnInit {
         if (this.displayValue == "") {
           this.displayValue="0";
         }
-        this.displayValue = Math.sqrt(+this.displayValue).toString();
+        this.displayValue = this.SquareRoot(+this.displayValue).toString();
         break;
       case "x²":
         if (this.displayValue == "") {
           this.displayValue="0";
         }
-        this.displayValue = (+this.displayValue * +this.displayValue).toString();
+        this.displayValue = this.Square(+this.displayValue).toString();
       break;
       case "x³":
         if (this.displayValue == "") {
           this.displayValue="0";
         }
-        this.displayValue = (+this.displayValue * +this.displayValue * +this.displayValue).toString();
+        this.displayValue = this.Cube(+this.displayValue).toString();
       break;
       
       case "1/X":
         if (this.displayValue == "") {
           this.displayValue="0";
         }
-        this.displayValue = (1 / +this.displayValue).toString();
+        this.displayValue = this.Inverse(+this.displayValue).toString();
       break;
       
       case "±":
         if (this.displayValue == "") {
           this.displayValue="0";
         }
-        this.displayValue = (+this.displayValue * -1).toString();
+        this.displayValue = this.SwitchSign(+this.displayValue).toString();
       break;
       case "◄":
-        this.displayValue = this.displayValue.substring(0, this.displayValue.length-1)
-      break;
-      
-    
+        this.displayValue = this.Backspace(this.displayValue).toString();
+      break;   
       default:
-        break;
+      break;
     }
   }
 
-  onKeydown(event) {
-    if (event.key === "Enter") {
-      console.log(event);
-    }
+  public Add(num1:number, num2:number):number{
+    return num1 + num2;
+  }
+
+  public Subtract(num1:number, num2:number):number{
+    return num1 - num2;
+  }
+
+  public Multiply(num1:number, num2:number):number{
+    return num1 * num2;
+  }
+
+  public Divide(num1:number, num2:number):number{
+    return num1 / num2;
+  }
+
+  public Modulus(num1:number, num2:number):number{
+    return num1 % num2;
+  }
+
+  public SquareRoot(num1:number):number{
+    return Math.sqrt(num1);
+  }
+
+  public Square(num1:number):number{
+    return num1 * num1;
+  }
+
+  public Cube(num1:number):number{
+    return num1 * num1 * num1;
+  }
+
+  public Inverse(num1:number):number{
+    return 1 / num1;
+  }
+
+  public SwitchSign(num1:number):number{
+    return num1 * -1;
+  }
+
+  public Backspace(num1Text:string):string{    
+    return num1Text.substring(0, num1Text.length-1)
   }
 }

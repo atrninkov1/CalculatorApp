@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { CalculatorComponent } from './calculator/calculator.component';
-import {RouterModule, Routes} from '@angular/router'
+import {RouterModule, Routes} from '@angular/router';
 
 @NgModule({
   declarations: [
