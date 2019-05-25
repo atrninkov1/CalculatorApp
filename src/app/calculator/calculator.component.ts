@@ -6,6 +6,19 @@ import { Component, OnInit, HostBinding, HostListener, Directive, Input} from '@
   styleUrls: ['./calculator.component.css'],
 })
 export class CalculatorComponent implements OnInit {
+
+  displayValue = "";
+  value = 0.0;
+  clearDisplay = false;
+  firstValueInputed = false;
+  lastOperation = "";
+  previousDisplay = "";
+  historicDisplay = "History: \n";
+  constructor() { }
+
+  ngOnInit() {
+  }
+
   @HostBinding('tabindex') tabIndex = 1;
   @HostListener('keyup', ['$event'])
   onKeyUp(kbdEvent: any): void {
@@ -61,20 +74,6 @@ export class CalculatorComponent implements OnInit {
       default:
         break;
     }
-  }
- 
-
-
-  displayValue = "";
-  value = 0.0;
-  clearDisplay = false;
-  firstValueInputed = false;
-  lastOperation = "";
-  previousDisplay = "";
-  historicDisplay = "";
-  constructor() { }
-
-  ngOnInit() {
   }
 
   public PressNum(number) {
@@ -160,13 +159,20 @@ export class CalculatorComponent implements OnInit {
     this.lastOperation = operation;
     var previous = this.displayValue + this.lastOperation;
     this.previousDisplay += previous;
-    if (operation == "") {      
-      this.historicDisplay += (this.previousDisplay + "\n");
+    if (operation == "") {
+      this.historicDisplay = ('<button class="CalculatorButton"');
+      //this.historicDisplay += ('<button class="CalculatorButton" (click)=SetValues("'+ this.value.toString() +'")> ' + this.previousDisplay + "</button>" + "\n");
       this.previousDisplay = "";
     }
     this.displayValue=this.value.toString();
     this.clearDisplay = true;
   }
+
+private SetValues(value:string)
+{
+  this.displayValue = value;
+  this.value = +value;
+}
 
   public ComplexOperation(operation){
     switch (operation) {

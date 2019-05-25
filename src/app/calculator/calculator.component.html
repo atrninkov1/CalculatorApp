@@ -32,6 +32,8 @@
 <button class="CalculatorButton" (click)='Operation("")'>=</button>
 </div>
 
-<div class="History"> History:<br>
+<div class="History" [innerHTML]="historicDisplay"> 
+    <!-- History:<br>
     {{historicDisplay}}
+    {{safeHtml}} -->
 </div>
